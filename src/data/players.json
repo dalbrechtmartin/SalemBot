@@ -1,8 +1,12 @@
 {
     "284030307148103682": {
-        "prenom": "Dana\u00e9",
-        "nom": "Yoru",
-        "inventaire": [],
-        "baguette": null
+        "nickname": "\u263d Yumie \u263e",
+        "level": 0,
+        "xp": 0,
+        "gold": 100,
+        "wand": null,
+        "inventory": [],
+        "quests": [],
+        "achievements": []
     }
 }

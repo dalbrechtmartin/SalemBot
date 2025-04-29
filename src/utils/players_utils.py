@@ -1,9 +1,12 @@
 import json
 import os
 
-DATA_FILE = "src/data/players.json"
+SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_FILE = os.path.join(SCRIPT_DIR, "data", "players.json")
 
 def load_players():
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+    
     if not os.path.exists(DATA_FILE):
         return {}
 
@@ -18,12 +21,16 @@ def player_exists(user_id):
     players = load_players()
     return str(user_id) in players
 
-def create_player(user_id, prenom, nom):
+def create_player(user_id, nickname):
     players = load_players()
     players[str(user_id)] = {
-        "prenom": prenom,
-        "nom": nom,
-        "inventaire": [],
-        "baguette": None
+        "nickname": nickname,
+        "level": 0,
+        "xp": 0,
+        "gold": 100,
+        "wand": None,
+        "inventory": [],
+        "quests": [],
+        "achievements": [],
     }
     save_players(players)
