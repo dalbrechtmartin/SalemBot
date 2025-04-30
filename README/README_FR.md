@@ -98,3 +98,15 @@ DISCORD_TOKEN=token_ici
 
 # 5. Lancer le bot
 python src/main.py
+```
+
+---
+
+## 🛡️ Licence
+
+**SalemBot** est un logiciel propriétaire.  
+© 2025 dalbrechtmartin. **Tous droits réservés.**
+
+> L'utilisation, la copie, la distribution ou la modification de ce code est strictement interdite sans autorisation explicite de l'auteure.
+
+

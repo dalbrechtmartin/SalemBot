@@ -99,3 +99,11 @@ DISCORD_TOKEN=your_token_here
 # 5. Run the bot
 python src/main.py
 ```
+---
+
+## 🛡️ License
+
+**SalemBot** is proprietary software.  
+© 2025 dalbrechtmartin. **All rights reserved.**
+
+> Use, copying, distribution, or modification of this code is strictly prohibited without explicit permission from the author.
