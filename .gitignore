@@ -170,5 +170,6 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
-# PyPI configuration file
-.pypirc
+# Others
+src/data/players/*.json
+**/data/players/*.json
