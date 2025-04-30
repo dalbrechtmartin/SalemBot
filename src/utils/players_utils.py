@@ -2,7 +2,7 @@ import json
 import os
 
 SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_FILE = os.path.join(SCRIPT_DIR, "data", "players.json")
+DATA_FILE = os.path.join(SCRIPT_DIR, "data/players", "players.json")
 
 def load_players():
     os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
