@@ -171,4 +171,5 @@ cython_debug/
 .ruff_cache/
 
 # Others
-data/players/*.json
+src/data/players/*.json
+**/data/players/*.json
