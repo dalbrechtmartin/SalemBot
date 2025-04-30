@@ -67,7 +67,7 @@ class ProfileCommand(commands.Cog):
                 embed.add_field(name="Réalisations", value=f"`{achievements_text}`", inline=False)
                 
                 # Footer avec un message aléatoire de Salem
-                embed.set_footer(text="*Meow~* Salem, votre fidèle compagnon magique")
+                embed.set_footer(text="Meow~")
                 
                 # Envoyer le profil
                 await interaction.response.send_message(embed=embed)
