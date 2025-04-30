@@ -1,0 +1,7 @@
+{
+    "meow.already_registered": "You're already one of us, **{name}**.",
+    "meow.welcome": "Hello, **{name}**!",
+    "meow.profile_created": "Nice to meet you, **{name}**. Magic accepts you.",
+    "meow.timeout": "The silence is suspicious... Come back later.",
+    "meow.error": "An error occurred: {error}"
+}
