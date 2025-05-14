@@ -7,7 +7,6 @@ import inspect
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
-GUILD_ID = os.getenv("DISCORD_GUILD_ID")
 
 # Ajoutez l'intent de message
 intents = discord.Intents.default()
