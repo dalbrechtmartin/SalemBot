@@ -7,7 +7,12 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_started
+      ollama:
+        condition: service_started
+    environment:
+      - OLLAMA_URL=${OLLAMA_URL}
     command: python src/main.py
 
   db:
@@ -22,6 +27,30 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_URL=${OLLAMA_URL}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  ollama-init:
+    image: ollama/ollama
+    command: -it ollama ollama pull llama3
+    volumes:
+      - ollama_data:/root/.ollama
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: "on-failure"
 
 volumes:
   pgdata:
+  ollama_data:

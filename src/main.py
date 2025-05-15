@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 from dotenv import load_dotenv
 import os
 import importlib
@@ -66,5 +67,19 @@ async def on_ready():
         print(f"❌ Erreur dans setup() : {e}")
         import traceback
         traceback.print_exc()
+        
+@bot.tree.error
+async def on_app_command_error(interaction: discord.Interaction, error):
+    if isinstance(error, app_commands.errors.MissingRole):
+        await interaction.response.send_message(
+            "❌ Vous n'avez pas les permissions d'utiliser cette commande.",
+            ephemeral=True
+        )
+    else:
+        await interaction.response.send_message(
+            "❌ Une erreur est survenue lors de l'exécution de la commande.",
+            ephemeral=True
+        )
+        raise error
 
 bot.run(TOKEN)

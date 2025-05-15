@@ -4,8 +4,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Install PostgreSQL dependencies
-RUN apk add --no-cache postgresql-dev gcc python3-dev musl-dev
+# Install PostgreSQL dependencies (Alpine uses apk)
+RUN apk update && apk add --no-cache gcc musl-dev postgresql-dev curl
 
 # Copy requirements first for better caching
 COPY requirements.txt .
