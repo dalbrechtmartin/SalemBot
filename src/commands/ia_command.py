@@ -7,12 +7,13 @@ import json
 import asyncio
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
+ADMIN_ROLE_ID = int(os.getenv("DISCORD_ADMIN_ROLE_ID", "-1"))
 
 class AICommand(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.checks.has_role(os.getenv("DISCORD_ADMIN_ROLE_ID", "admin"))
+    @app_commands.checks.has_role(ADMIN_ROLE_ID)
     @app_commands.command(name="ai", description="Répond avec une réponse IA.")
     async def ai(self, interaction: discord.Interaction, prompt: str):
         try:
