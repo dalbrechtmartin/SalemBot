@@ -1,31 +1,31 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-from utils.players_utils import player_exists, load_players
 
-def salem_embed(description: str, bot: commands.Bot) -> discord.Embed:
-    avatar_url = bot.user.avatar.url if bot.user.avatar else None
-    embed = discord.Embed(
-        description=description,
-        color=discord.Color.purple()
-    )
-    embed.set_author(name="Salem", icon_url=avatar_url)
-    embed.set_thumbnail(url=avatar_url)
-    return embed
+from utils.players_utils import player_exists, load_players, get_player_interaction
+from utils.translations_utils import translate
+from utils.logs_utils import log_command_usage
+
+from embeds.error_embed import error_embed
 
 class ProfileCommand(commands.Cog):
+    
+    # Paramètres de la commande
+    command_name = "profil"
+    command_description = "Affiche ton profil magique."
+    
+    # Initialisation de la commande
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="profile", description="Affiche ton profil magique.")
+    @app_commands.command(name=command_name, description=command_description)
     async def profile(self, interaction: discord.Interaction):
         
         # Variables
-        user_id = interaction.user.id
-        user_nickname = interaction.user.display_name
+        user_id, user_nickname, user_lang = get_player_interaction(interaction)
         
-        # Debug
-        print(f"Commande 'profile' appelée par {interaction.user.name}")
+        # Logs
+        log_command_usage(interaction.command.name, user_id, user_nickname, user_lang)
 
         if player_exists(user_id):
             try:
@@ -73,12 +73,17 @@ class ProfileCommand(commands.Cog):
                 await interaction.response.send_message(embed=embed)
                 
             except Exception as e:
-                # Autres erreurs
                 print(f"Erreur : {e}")
                 await interaction.followup.send(
-                    embed=salem_embed(f"Une erreur est survenue : {e}", self.bot)
+                    embed=error_embed(
+                        translate("profile.error", user_lang),
+                        self.bot
+                    )
                 )
         else:
             await interaction.response.send_message(
-                embed=salem_embed(f"*Meow.* Tu n'as pas encore de profil ! Utilise la commande `/meow` pour devenir des nôtres.", self.bot)
+                embed=error_embed(
+                    translate("profile.not_registered", user_lang),
+                    self.bot
+                )
             )

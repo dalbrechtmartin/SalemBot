@@ -1,9 +1,10 @@
 import json
 import os
 
-TRANSLATIONS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data/lang")
+TRANSLATIONS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "lang")
 DEFAULT_LANG = "fr"
 
+# Récupère la traduction d'une clé donnée dans le fichier de langue spécifié
 def get_translation(key: str, lang: str = DEFAULT_LANG) -> str:
     try:
         lang_file = os.path.join(TRANSLATIONS_DIR, f"{lang}.json")
@@ -18,6 +19,7 @@ def get_translation(key: str, lang: str = DEFAULT_LANG) -> str:
         print(f"Erreur lors de la récupération de la traduction : {e}")
         return key
 
+# Formatte la traduction avec les arguments fournis
 def translate(key: str, lang: str = DEFAULT_LANG, **kwargs) -> str:
     translation = get_translation(key, lang)
     if kwargs:
