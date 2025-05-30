@@ -6,7 +6,7 @@ import requests
 import json
 import asyncio
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://ollama:11434/api/chat")
 ADMIN_ROLE_ID = int(os.getenv("DISCORD_ADMIN_ROLE_ID", "-1"))
 
 class AICommand(commands.Cog):
