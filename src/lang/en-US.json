@@ -1,10 +1,16 @@
 {
-    "meow.already_registered": "You're already one of us, **{name}**.",
-    "meow.welcome": "Hello, **{name}**!",
-    "meow.profile_created": "Nice to meet you, **{name}**. Magic accepts you.",
-    "meow.timeout": "The silence is suspicious... Come back later.",
-    "meow.error": "An error occurred: {error}",
+  "meow.already_registered": "You're already one of us, **{name}**.",
+  "meow.welcome": "Hello, **{name}**!",
+  "meow.profile_created": "Nice to meet you, **{name}**. Magic accepts you.",
+  "meow.timeout": "The silence is suspicious... Come back later.",
+  "meow.error": "An error occurred: {error}",
 
-    "profile.error": "An error occurred while creating your profile: {error}",
-    "profile.not_registered": "*Meow.* You don't have a profile yet! Use the `/meow` command to become one of us."
+  "profile.error": "An error occurred while creating your profile: {error}",
+  "profile.not_registered": "*Meow.* You don't have a profile yet! Use the `/meow` command to become one of us.",
+
+  "item.missing": "None",
+
+  "quests.empty": "None",
+
+  "achievements.empty": "None"
 }

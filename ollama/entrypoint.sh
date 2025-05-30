@@ -2,11 +2,10 @@
 set -e
 
 ollama serve &
-
 OLLAMA_PID=$!
 
 echo "Waiting for Ollama to start..."
-while ! nc -z localhost 11434; do
+until curl -s http://localhost:11434/ > /dev/null; do
   sleep 1
 done
 

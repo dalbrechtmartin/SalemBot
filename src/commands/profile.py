@@ -2,7 +2,7 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from utils.players_utils import player_exists, load_players, get_player_interaction
+from utils.players_utils import player_exists, get_player, get_player_interaction
 from utils.translations_utils import translate
 from utils.logs_utils import log_command_usage
 
@@ -10,68 +10,44 @@ from embeds.error_embed import error_embed
 
 class ProfileCommand(commands.Cog):
     
-    # Paramètres de la commande
     command_name = "profil"
     command_description = "Affiche ton profil magique."
     
-    # Initialisation de la commande
     def __init__(self, bot):
         self.bot = bot
 
     @app_commands.command(name=command_name, description=command_description)
     async def profile(self, interaction: discord.Interaction):
-        
-        # Variables
         user_id, user_nickname, user_lang = get_player_interaction(interaction)
-        
-        # Logs
         log_command_usage(interaction.command.name, user_id, user_nickname, user_lang)
 
         if player_exists(user_id):
             try:
-                # Charger les données du joueur
-                players_data = load_players()
-                player_data = players_data[str(user_id)]
-                
-                # Embed avec les informations du joueur
+                player_data = get_player(user_id)
+                if not player_data:
+                    raise Exception(translate("profile.not_registered"))
+
                 embed = discord.Embed(
-                    title=f"Profil de {player_data['nickname']}",
+                    title=f"Profil de {user_nickname}",
                     color=discord.Color.purple()
                 )
-                
-                # Avatar de l'utilisateur
                 embed.set_thumbnail(url=interaction.user.display_avatar.url)
-                
-                # Informations de base
                 embed.add_field(name="Niveau", value=f"`{player_data['level']}`", inline=True)
                 embed.add_field(name="XP", value=f"`{player_data['xp']}`", inline=True)
                 embed.add_field(name="Or", value=f"`{player_data['gold']}`", inline=True)
-                
-                # Baguette
-                wand_info = player_data['wand'] if player_data['wand'] else "Aucune baguette"
+                wand_info = player_data['wand'] if player_data['wand'] else translate("item.missing")
                 embed.add_field(name="Baguette", value=f"`{wand_info}`", inline=False)
-                
-                # Inventaire
-                inventory = player_data['inventory']
-                inventory_text = "Vide" if not inventory else ", ".join(inventory)
+                inventory = player_data['inventory'] or []
+                inventory_text = translate("item.missing") if not inventory else ", ".join(map(str, inventory))
                 embed.add_field(name="Inventaire", value=f"`{inventory_text}`", inline=False)
-                
-                # Quêtes
-                quests = player_data['quests']
-                quests_text = "Aucune quête" if not quests else "\n".join(quests)
+                quests = player_data['quests'] or []
+                quests_text = translate("quests.empty") if not quests else "\n".join(map(str, quests))
                 embed.add_field(name="Quêtes", value=f"`{quests_text}`", inline=False)
-                
-                # Réalisations
-                achievements = player_data['achievements']
-                achievements_text = "Aucune réalisation" if not achievements else "\n".join(achievements)
+                achievements = player_data['achievements'] or []
+                achievements_text = translate("achievements.empty") if not achievements else "\n".join(map(str, achievements))
                 embed.add_field(name="Réalisations", value=f"`{achievements_text}`", inline=False)
-                
-                # Footer avec un message aléatoire de Salem
                 embed.set_footer(text="Meow~")
-                
-                # Envoyer le profil
                 await interaction.response.send_message(embed=embed)
-                
             except Exception as e:
                 print(f"Erreur : {e}")
                 await interaction.followup.send(

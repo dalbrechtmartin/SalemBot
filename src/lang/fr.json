@@ -1,10 +1,16 @@
 {
-    "meow.already_registered": "Tu es déjà des nôtres, **{name}**.",
-    "meow.welcome": "Bonjour, **{name}** !",
-    "meow.profile_created": "Enchanté, **{name}**. La magie t'accepte.",
-    "meow.timeout": "Le silence est louche... Reviens me voir plus tard.",
-    "meow.error": "Une erreur est survenue : {error}",
+  "meow.already_registered": "Tu es déjà des nôtres, **{name}**.",
+  "meow.welcome": "Bonjour, **{name}** !",
+  "meow.profile_created": "Enchanté, **{name}**. La magie t'accepte.",
+  "meow.timeout": "Le silence est louche... Reviens me voir plus tard.",
+  "meow.error": "Une erreur est survenue : {error}",
 
-    "profile.error": "Une erreur est survenue lors de la création de ton profil : {error}",
-    "profile.not_registered": "*Meow.* Tu n'as pas encore de profil ! Utilise la commande `/meow` pour devenir des nôtres."
+  "profile.error": "Une erreur est survenue lors de la création de ton profil : {error}",
+  "profile.not_registered": "*Meow.* Tu n'as pas encore de profil ! Utilise la commande `/meow` pour devenir des nôtres.",
+
+  "item.missing": "Vide",
+
+  "quests.empty": "Aucune quête active",
+
+  "achievements.empty": "Aucune réalisation"
 }
