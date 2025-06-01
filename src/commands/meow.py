@@ -33,15 +33,15 @@ class MeowCommand(commands.Cog):
         if player_exists(user_id):
             await interaction.response.send_message(
                 embed=general_embed(
-                    translate("meow.already_registered", user_lang, name=user_nickname),
-                    self.bot
+                    bot=self.bot,
+                    description=translate("meow.already_registered", user_lang, name=user_nickname),
                 )
             )
         else:
             await interaction.response.send_message(
                 embed=general_embed(
-                    translate("meow.welcome", user_lang, name=user_nickname),
-                    self.bot
+                    bot=self.bot,
+                    description=translate("meow.welcome", user_lang, name=user_nickname),
                 )
             )
 
@@ -49,21 +49,21 @@ class MeowCommand(commands.Cog):
                 create_player(user_id, user_nickname)
                 await interaction.followup.send(
                     embed=general_embed(
-                        translate("meow.profile_created", user_lang, name=user_nickname),
-                        self.bot
+                        bot=self.bot,
+                        description=translate("meow.profile_created", user_lang, name=user_nickname),
                     )
                 )
             except asyncio.TimeoutError:
                 await interaction.followup.send(
                     embed=error_embed(
-                        translate("meow.timeout", user_lang),
-                        self.bot
+                        bot=self.bot,
+                        description=translate("meow.timeout", user_lang),
                     )
                 )
             except Exception as e:
                 await interaction.followup.send(
                     embed=error_embed(
-                        translate("meow.error", user_lang),
-                        self.bot
+                        bot=self.bot,
+                        description=translate("meow.error", user_lang),
                     )
                 )

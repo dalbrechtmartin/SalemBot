@@ -8,6 +8,5 @@ def error_embed(description: str, bot: commands.Bot, author: str = "Salem", foot
         color=discord.Color.red()
     )
     embed.set_author(name=author, icon_url=avatar_url)
-    embed.set_thumbnail(url=avatar_url)
     embed.set_footer(text=footer)
     return embed

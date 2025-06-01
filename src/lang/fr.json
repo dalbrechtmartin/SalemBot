@@ -5,6 +5,10 @@
   "meow.timeout": "Le silence est louche... Reviens me voir plus tard.",
   "meow.error": "Une erreur est survenue : {error}",
 
+  "profile.title": "Profil de {name}",
+  "profile.level": "Niveau",
+  "profile.xp": "Exp.",
+  "profile.gold": "Or",
   "profile.error": "Une erreur est survenue lors de la création de ton profil : {error}",
   "profile.not_registered": "*Meow.* Tu n'as pas encore de profil ! Utilise la commande `/meow` pour devenir des nôtres.",
 
